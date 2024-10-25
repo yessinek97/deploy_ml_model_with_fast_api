@@ -35,6 +35,7 @@ def process_data(data, request):
         "relatioship",
         "native-country",
     ]
+    X, y, encoder, lb = None, None, None, None
     try:
         label = request.config.option.label
         y = data[label]
