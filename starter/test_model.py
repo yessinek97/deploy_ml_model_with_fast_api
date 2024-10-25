@@ -1,3 +1,4 @@
+"""test script to test model training and inference"""
 import numpy as np
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 

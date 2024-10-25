@@ -1,6 +1,6 @@
+"""Script for data handling"""
 import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
-
 
 def process_data(
         X,

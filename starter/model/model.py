@@ -1,3 +1,4 @@
+"""Script for model training and inference"""
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestRegressor
 

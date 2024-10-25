@@ -1,3 +1,4 @@
+"""Conftest file to implicitly test data loading and define fixtures"""
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
