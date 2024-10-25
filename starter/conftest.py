@@ -63,8 +63,9 @@ def process_data(data, request):
 
 
 @pytest.fixture(scope="session")
-def model(process_data):
+def trained_model(process_data):
     X, y, _, _ = process_data
+    model = None
     try:
         model = train_model(X, y)
     except BaseException:
