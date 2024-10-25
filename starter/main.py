@@ -9,9 +9,9 @@ app = FastAPI()
 class Value(BaseModel):
   value: int
 
-class Data(BaseModel):
-  feature_1: float
-  feature_2: str
+class InferenceInput(BaseModel):
+  model: float
+  data: str
 
 @app.get('/')
 async def welcome_message():
@@ -19,8 +19,8 @@ async def welcome_message():
     "This is a welcome message to the API",
 }
 
-@app.post("/data/")
-async def ingest_data(data, model):
+@app.post("/predict/")
+async def ingest_data(inference_input: InferenceInput):
     cat_features = [
         "workclass",
         "education",
@@ -32,9 +32,9 @@ async def ingest_data(data, model):
         "native-country",
     ]
     X, _, _, _ = process_data(
-        data,
+        inference_input.data,
         categorical_features=cat_features,
         training=False,
     )
-    preds = model.predict(X)
+    preds = inference_input.model.predict(X)
     return preds
