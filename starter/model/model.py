@@ -75,15 +75,15 @@ def eval_model_on_slices(model, data):
         data (_type_): Data used in training.
     """
     cat_features = [
-    "workclass",
-    "education",
-    "marital-status",
-    "occupation",
-    "relationship",
-    "race",
-    "sex",
-    "native-country",
-]
+        "workclass",
+        "education",
+        "marital-status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "native-country",
+    ]
     print("Sliced Model Evaluation: \n")
     for feature in cat_features:
         if data[feature].unique() == np.array([0,1]):
@@ -102,8 +102,7 @@ def eval_model_on_slices(model, data):
                 label="salary",
                 training=False,
             )
-            preds = model.predict(X)
+            preds = inference(model, X)
             precision, recall, fbeta = compute_model_metrics(y, preds)
             print(f"\nFeature {feature} Slice {slice_idx}:\n")
             print(f"precision :{precision} - recall: {recall} - fbeta: {fbeta}")
-            
