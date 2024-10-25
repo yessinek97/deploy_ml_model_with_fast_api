@@ -1,6 +1,8 @@
 """Script for model training and inference"""
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestRegressor
+from data import process_data
+import numpy as np
 
 
 # Optional: implement hyperparameter tuning.
@@ -63,3 +65,44 @@ def inference(model, X):
     """
     preds = model.predict(X)
     return preds
+
+
+def eval_model_on_slices(model, data):
+    """Computes model performance on slices of data.
+
+    Args:
+        model (_type_): Trained_model.
+        data (_type_): Data used in training.
+    """
+    cat_features = [
+    "workclass",
+    "education",
+    "marital-status",
+    "occupation",
+    "relationship",
+    "race",
+    "sex",
+    "native-country",
+]
+    print("Sliced Model Evaluation: \n")
+    for feature in cat_features:
+        if data[feature].unique() == np.array([0,1]):
+            slices = [data[data[feature] == value] for value in np.array([0,1])]
+        else:
+            feature_mean = np.mean(data[feature].values)
+            slices = [
+                data[data[feature] >= feature_mean], 
+                data[data[feature] < feature_mean]
+            ]
+        
+        for slice_idx, slice in enumerate(slices):
+            X, y, _, _ = process_data(
+                slice,
+                categorical_features=cat_features,
+                label="salary",
+                training=False,
+            )
+            preds = model.predict(X)
+            precision, recall, fbeta = compute_model_metrics(y, preds)
+            print(f"\nFeature {feature} Slice {slice_idx}:\n")
+            print(f"precision :{precision} - recall: {slice_idx} - fbeta: {fbeta}")
