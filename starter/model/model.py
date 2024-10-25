@@ -105,4 +105,4 @@ def eval_model_on_slices(model, data):
             preds = model.predict(X)
             precision, recall, fbeta = compute_model_metrics(y, preds)
             print(f"\nFeature {feature} Slice {slice_idx}:\n")
-            print(f"precision :{precision} - recall: {slice_idx} - fbeta: {fbeta}")
+            print(f"precision :{precision} - recall: {recall} - fbeta: {fbeta}")
