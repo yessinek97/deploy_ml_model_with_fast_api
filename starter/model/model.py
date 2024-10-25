@@ -19,7 +19,7 @@ def train_model(X_train, y_train):
         Trained machine learning model.
     """
     # instanciate model and fit it
-    model=RandomForestRegressor()
+    model = RandomForestRegressor()
     model.fit(X_train, y_train)
     return model
 

@@ -4,19 +4,22 @@ from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 import pytest
 from model.model import train_model
 
+
 def pytest_addoption(parser):
     parser.addoption("--csv", action="store")
     parser.addoption("--label", action="store")
-    
+
+
 @pytest.fixture(scope="session")
 def data(request):
     try:
         data_path = request.config.option.csv
         df = pd.read_csv(data_path)
         assert len(df) > 1, 'ERROR: data frame has no rows'
-    except:
+    except BaseException:
         print('ERROR: problem loading dataset')
     return df
+
 
 @pytest.fixture(scope="session")
 def process_data(data, request):
@@ -45,20 +48,23 @@ def process_data(data, request):
         X_categorical = encoder.fit_transform(X_categorical)
         y = lb.fit_transform(y.values).ravel()
 
-        assert len(X_categorical)>0, 'there has to be at least one categorical feature'
-        assert len(X_continuous)>0, 'there has to be at least one continuous feature'
+        assert len(
+            X_categorical) > 0, 'there has to be at least one categorical feature'
+        assert len(
+            X_continuous) > 0, 'there has to be at least one continuous feature'
 
-    except:
+    except BaseException:
         print('ERROR: encountered problem processing data')
-    
+
     X = np.concatenate([X_continuous, X_categorical], axis=1)
     return (X, y, encoder, lb)
 
-@pytest.fixture(scope="session")  
+
+@pytest.fixture(scope="session")
 def test_train_model(process_data):
     X, y, _, _ = process_data
     try:
         model = train_model(X, y)
-    except:
+    except BaseException:
         print('ERROR: Encountered problem when trying to train the model')
     return model
