@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 import pytest
-from ml.model import train_model
+from model.model import train_model
 
 def pytest_addoption(parser):
     parser.addoption("--csv", action="store")

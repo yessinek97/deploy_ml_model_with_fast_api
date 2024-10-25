@@ -1,8 +1,8 @@
 # Script to train machine learning model.
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from ml.data import process_data
-from ml.model import train_model
+from model.data import process_data
+from mdoel.model import train_model
 
 data_path = "data/census.csv"
 data = pd.read_csv(data_path)
