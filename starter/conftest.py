@@ -63,7 +63,7 @@ def process_data(data, request):
 
 
 @pytest.fixture(scope="session")
-def test_train_model(process_data):
+def model(process_data):
     X, y, _, _ = process_data
     try:
         model = train_model(X, y)
