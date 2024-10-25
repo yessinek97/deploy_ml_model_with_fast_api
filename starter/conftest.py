@@ -48,6 +48,7 @@ def process_data(data, request):
 
         X_categorical = encoder.fit_transform(X_categorical)
         y = lb.fit_transform(y.values).ravel()
+        X = np.concatenate([X_continuous, X_categorical], axis=1)
 
         assert len(
             X_categorical) > 0, 'there has to be at least one categorical feature'
@@ -57,7 +58,6 @@ def process_data(data, request):
     except BaseException:
         print('ERROR: encountered problem processing data')
 
-    X = np.concatenate([X_continuous, X_categorical], axis=1)
     return (X, y, encoder, lb)
 
 
