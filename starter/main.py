@@ -7,6 +7,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from model.model import train_model
+from typing import Any
 
 data_path = "data/census.csv"
 data = pd.read_csv(data_path)
@@ -36,8 +37,9 @@ app = FastAPI()
 
 
 class InferenceInput(BaseModel):
-    model: RandomForestClassifier
-    data: pd.DataFrame
+    arbitrary_types_allowed: bool = True
+    model: Any
+    data: Any
 
 
 @app.get('/')

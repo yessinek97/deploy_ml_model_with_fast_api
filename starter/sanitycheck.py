@@ -9,7 +9,7 @@ OK_COLOR = '\033[92m'
 WARN_COLOR = '\033[93m'
 
 
-def run_sanity_check(test_dir): # noqa: C901
+def run_sanity_check(test_dir):  # noqa: C901
     print('This script will perform a sanity test to ensure your code meets the criteria in the rubric.\n')
     print('Please enter the path to the file that contains your test cases for the GET() and POST() methods')
     print('The path should be something like abc/def/test_xyz.py')
