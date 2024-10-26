@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 
 client = TestClient(app)
-data_path = "data/census.csv"
+data_path = "/mnt/c/Users/y.khanfir/mlops-training/deploy_ml_model_with_fast_api/starter/data/census.csv"
 cat_features = [
     "workclass",
     "education",
