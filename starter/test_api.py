@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 
 client = TestClient(app)
-data_path = "/mnt/c/Users/y.khanfir/mlops-training/deploy_ml_model_with_fast_api/starter/data/census.csv"
+# abs data path
 cat_features = [
     "workclass",
     "education",
@@ -20,14 +20,13 @@ cat_features = [
 ]
 
 
-def test_predict_low_salary(trained_model):
+def test_predict_low_salary(trained_model, data):
     try:
-        df = pd.read_csv(data_path)
-        mean_salary = np.mean(df["salary"].values)
-        df = df[df["salary"] <= mean_salary]
+        mean_salary = np.mean(data["salary"].values)
+        data = data[data["salary"] <= mean_salary]
 
         X, _, _, _ = process_data(
-            df,
+            data,
             categorical_features=cat_features,
             training=False,
         )
@@ -48,13 +47,12 @@ def test_predict_low_salary(trained_model):
         print("ERROR: failed retrieving inference results")
 
 
-def test_predict_high_salary(trained_model):
+def test_predict_high_salary(trained_model, data):
     try:
-        df = pd.read_csv(data_path)
-        mean_salary = np.mean(df["salary"].values)
-        df = df[df["salary"] > mean_salary]
+        mean_salary = np.mean(data["salary"].values)
+        data = data[data["salary"] > mean_salary]
         X, _, _, _ = process_data(
-            df,
+            data,
             categorical_features=cat_features,
             training=False,
         )
