@@ -7,8 +7,12 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from model.model import train_model
 from typing import Any
+import os 
 
-data_path = "~/starter/data/census.csv"
+data_path = os.path.join(
+    os.path.abspath("."),
+    "data/census.csv",
+)
 data = pd.read_csv(data_path)
 
 # Optional enhancement, use K-fold cross validation instead of a
