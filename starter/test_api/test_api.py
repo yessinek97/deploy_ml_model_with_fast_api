@@ -1,6 +1,4 @@
 """Test script to test GET and POST api calls"""
-import sys
-import json
 from fastapi.testclient import TestClient
 from main import app
 from main import InferenceInput

@@ -1,5 +1,5 @@
 """Implementation of the fast api"""
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel
 from model.model import inference
 from model.data import process_data
