@@ -24,7 +24,7 @@ def test_predict_low_salary(trained_model):
     try:
         df = pd.read_csv(data_path)
         mean_salary = np.mean(df["salary"].values)
-        df = df[df["salary"]<=mean_salary]
+        df = df[df["salary"] <= mean_salary]
 
         X, _, _, _ = process_data(
             df,
@@ -52,7 +52,7 @@ def test_predict_high_salary(trained_model):
     try:
         df = pd.read_csv(data_path)
         mean_salary = np.mean(df["salary"].values)
-        df = df[df["salary"]>mean_salary]
+        df = df[df["salary"] > mean_salary]
         X, _, _, _ = process_data(
             df,
             categorical_features=cat_features,

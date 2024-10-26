@@ -5,7 +5,6 @@ from model.model import inference
 from model.data import process_data
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
 from model.model import train_model
 from typing import Any
 
