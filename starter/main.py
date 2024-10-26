@@ -8,9 +8,11 @@ from sklearn.model_selection import train_test_split
 from model.model import train_model
 from typing import Any
 import os 
+from pathlib import Path
 
 data_path = os.path.join(
     os.path.abspath("."),
+    Path(__file__).parent,
     "data/census.csv",
 )
 data = pd.read_csv(data_path)
