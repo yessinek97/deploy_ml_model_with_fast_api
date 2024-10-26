@@ -3,7 +3,6 @@ from fastapi.testclient import TestClient
 from main import app
 from main import InferenceInput
 from model.data import process_data
-import pandas as pd
 import numpy as np
 
 client = TestClient(app)
