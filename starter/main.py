@@ -34,15 +34,18 @@ model = train_model(X_train, y_train)
 
 app = FastAPI()
 
+
 class InferenceInput(BaseModel):
-  model: RandomForestClassifier
-  data: pd.DataFrame
+    model: RandomForestClassifier
+    data: pd.DataFrame
+
 
 @app.get('/')
 async def welcome_message():
-  return {
-    "This is a welcome message to the API",
-}
+    return {
+        "This is a welcome message to the API",
+    }
+
 
 @app.post("/predict/")
 async def predict(inference_input: InferenceInput):

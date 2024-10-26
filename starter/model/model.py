@@ -86,15 +86,16 @@ def eval_model_on_slices(model, data):
     ]
     print("Sliced Model Evaluation: \n")
     for feature in cat_features:
-        if data[feature].unique() == np.array([0,1]):
-            slices = [data[data[feature] == value] for value in np.array([0,1])]
+        if data[feature].unique() == np.array([0, 1]):
+            slices = [data[data[feature] == value]
+                      for value in np.array([0, 1])]
         else:
             feature_mean = np.mean(data[feature].values)
             slices = [
-                data[data[feature] >= feature_mean], 
+                data[data[feature] >= feature_mean],
                 data[data[feature] < feature_mean]
             ]
-        
+
         for slice_idx, slice in enumerate(slices):
             X, y, _, _ = process_data(
                 slice,
@@ -105,4 +106,5 @@ def eval_model_on_slices(model, data):
             preds = inference(model, X)
             precision, recall, fbeta = compute_model_metrics(y, preds)
             print(f"\nFeature {feature} Slice {slice_idx}:\n")
-            print(f"precision :{precision} - recall: {recall} - fbeta: {fbeta}")
+            print(
+                f"precision :{precision} - recall: {recall} - fbeta: {fbeta}")

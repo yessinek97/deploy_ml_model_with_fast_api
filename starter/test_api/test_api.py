@@ -20,6 +20,7 @@ cat_features = [
     "native-country",
 ]
 
+
 def test_post(trained_model):
     try:
         df = pd.read_csv(data_path)
@@ -28,13 +29,13 @@ def test_post(trained_model):
             categorical_features=cat_features,
             training=False,
         )
-        inference_input=InferenceInput(
+        inference_input = InferenceInput(
             trained_model,
             X
         )
     except BaseException:
         print("ERROR: Error loading data")
-    
+
     try:
         r = client.post("/predict", inference_input=inference_input)
         print(r.json())
@@ -42,7 +43,8 @@ def test_post(trained_model):
     except BaseException:
         print("ERROR: failed retrieving inference results")
 
+
 def test_get():
     r = client.post("/")
     print(r.json())
-    assert r.json() != None
+    assert r.json() is not None

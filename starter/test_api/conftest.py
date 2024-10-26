@@ -10,6 +10,7 @@ def pytest_addoption(parser):
     parser.addoption("--csv", action="store")
     parser.addoption("--label", action="store")
 
+
 @pytest.fixture(scope="session")
 def data(request):
     try:
