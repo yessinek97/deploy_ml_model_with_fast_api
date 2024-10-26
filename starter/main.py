@@ -7,7 +7,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from model.model import train_model
 from typing import Any
-import os 
+import os
 from pathlib import Path
 
 data_path = os.path.join(
