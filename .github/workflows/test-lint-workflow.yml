@@ -34,3 +34,4 @@ jobs:
     - name: Test with pytest
       run: |
         pytest starter/test_model.py --csv=starter/data/census.csv --label="salary" 
+        pytest starter/test_api.py --csv=starter/data/census.csv --label="salary" 
