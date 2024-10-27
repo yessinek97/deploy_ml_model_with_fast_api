@@ -46,7 +46,6 @@ class InferenceInput(BaseModel):
     model: Any
     data: Any
 
-
 @app.get('/')
 async def welcome_message():
     return {
@@ -62,6 +61,7 @@ async def predict(snippet_size: int = 10):
     )
     X, _, _, _ = process_data(
         inference_input.data,
+        label="salary",
         categorical_features=cat_features,
         encoder=encoder,
         lb=lb,
