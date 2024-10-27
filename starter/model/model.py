@@ -1,6 +1,6 @@
 """Script for model training and inference"""
 from sklearn.metrics import fbeta_score, precision_score, recall_score
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier
 from model.data import process_data
 import numpy as np
 
@@ -22,7 +22,7 @@ def train_model(X_train, y_train):
         Trained machine learning model.
     """
     # instanciate model and fit it
-    model = RandomForestRegressor()
+    model = RandomForestClassifier()
     model.fit(X_train, y_train)
     return model
 
