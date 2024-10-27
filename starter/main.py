@@ -63,6 +63,8 @@ async def predict(snippet_size: int = 10):
     X, _, _, _ = process_data(
         inference_input.data,
         categorical_features=cat_features,
+        encoder=encoder,
+        lb=lb,
         training=False,
     )
     preds = inference(model, X)
@@ -71,4 +73,4 @@ async def predict(snippet_size: int = 10):
         i: prediction 
         for i, prediction in enumerate(preds[:snippet_size])
     })
-    return {'preds: '}
+    return {'predictions': preds}
