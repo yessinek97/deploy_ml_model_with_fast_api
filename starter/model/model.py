@@ -63,8 +63,6 @@ def inference(model, X):
     preds : np.array
         Predictions from the model.
     """
-    print(X.shape)
-    exit()
     preds = model.predict(X)
     return preds
 
