@@ -54,12 +54,21 @@ async def welcome_message():
     }
 
 
-@app.post("/predict/")
-async def predict(inference_input: InferenceInput):
+@app.post("/predict/{sinppet_size}")
+async def predict(snippet_size: int = 10):
+    inference_input = InferenceInput(
+        model=model,
+        data=test,
+    )
     X, _, _, _ = process_data(
         inference_input.data,
         categorical_features=cat_features,
         training=False,
     )
     preds = inference(model, X)
-    return {'preds: ', preds}
+    print("here is a sinppet of the predicted output:\n")
+    print({
+        i: prediction 
+        for i, prediction in enumerate(preds[:snippet_size])
+    })
+    return {'preds: '}
